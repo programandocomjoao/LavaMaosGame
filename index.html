@@ -39,23 +39,11 @@
     50% { transform: scale(1.05); }
   }
   
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-10px); }
-    75% { transform: translateX(10px); }
-  }
-  
   h1 {
     font-size: 2rem;
     text-align: center;
     margin-bottom: 20px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-  }
-  
-  h2 {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: 15px;
   }
   
   .subtitle {
@@ -83,7 +71,7 @@
   .btn {
     width: 100%;
     padding: 18px;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 700;
     border: none;
     border-radius: 10px;
@@ -97,13 +85,13 @@
   }
   
   .btn:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
+  .btn:disabled { opacity: 0.6; cursor: not-allowed; }
   
   .btn-primary { background: #26890c; }
   .btn-secondary { background: #e91e63; }
   .btn-warning { background: #ff9800; }
   .btn-info { background: #2196f3; }
   
-  /* Quiz Screen */
   .quiz-header {
     display: flex;
     justify-content: space-between;
@@ -124,10 +112,7 @@
   
   .timer.danger { color: #ff4444; animation: pulse 0.5s infinite; }
   
-  .question-counter {
-    font-size: 1rem;
-    font-weight: 600;
-  }
+  .question-counter { font-size: 1rem; font-weight: 600; }
   
   .progress-bar {
     width: 100%;
@@ -182,11 +167,9 @@
     text-align: center;
     transition: all 0.2s;
     box-shadow: 0 4px 0 rgba(0,0,0,0.2);
-    position: relative;
   }
   
   .option:active { transform: translateY(2px); box-shadow: 0 2px 0 rgba(0,0,0,0.2); }
-  
   .option.red { background: #e21b30; }
   .option.blue { background: #1368ce; }
   .option.yellow { background: #d89e00; color: #333; }
@@ -196,7 +179,6 @@
   .option.wrong { background: #757575 !important; opacity: 0.6; }
   .option:disabled { cursor: not-allowed; }
   
-  /* Result Screen */
   .result-card {
     background: rgba(255,255,255,0.95);
     color: #333;
@@ -207,22 +189,9 @@
   }
   
   .result-emoji { font-size: 4rem; margin-bottom: 10px; }
+  .points-gained { font-size: 3rem; font-weight: 900; color: #46178f; margin: 10px 0; }
+  .result-label { font-size: 1rem; color: #666; text-transform: uppercase; letter-spacing: 2px; }
   
-  .points-gained {
-    font-size: 3rem;
-    font-weight: 900;
-    color: #46178f;
-    margin: 10px 0;
-  }
-  
-  .result-label {
-    font-size: 1rem;
-    color: #666;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-  
-  /* Ranking */
   .ranking-list {
     background: rgba(255,255,255,0.95);
     color: #333;
@@ -240,63 +209,16 @@
     border-bottom: 1px solid #eee;
     gap: 10px;
   }
-  
   .ranking-item:last-child { border-bottom: none; }
   
-  .rank-position {
-    font-size: 1.5rem;
-    font-weight: 900;
-    min-width: 40px;
-    text-align: center;
-  }
-  
+  .rank-position { font-size: 1.5rem; font-weight: 900; min-width: 40px; text-align: center; }
   .rank-1 { color: #ffd700; }
   .rank-2 { color: #c0c0c0; }
   .rank-3 { color: #cd7f32; }
-  
-  .rank-name {
-    flex: 1;
-    font-weight: 600;
-    font-size: 1rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-  
-  .rank-score {
-    font-weight: 700;
-    color: #46178f;
-    font-size: 1.1rem;
-  }
-  
-  .empty-ranking {
-    text-align: center;
-    padding: 30px;
-    color: #999;
-    font-style: italic;
-  }
-  
-  .highlight-me {
-    background: #fff3cd !important;
-    border-radius: 8px;
-  }
-  
-  .file-input-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    width: 100%;
-  }
-  
-  .file-input-wrapper input[type=file] {
-    position: absolute;
-    left: 0;
-    top: 0;
-    opacity: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-  }
+  .rank-name { flex: 1; font-weight: 600; font-size: 1rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rank-score { font-weight: 700; color: #46178f; font-size: 1.1rem; }
+  .empty-ranking { text-align: center; padding: 30px; color: #999; font-style: italic; }
+  .highlight-me { background: #fff3cd !important; border-radius: 8px; }
   
   .info-box {
     background: rgba(255,255,255,0.15);
@@ -307,7 +229,20 @@
     text-align: center;
     line-height: 1.4;
   }
-  
+
+  .loading-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7); display: none; align-items: center;
+    justify-content: center; z-index: 999; color: white; font-size: 1.2rem;
+    flex-direction: column; gap: 15px;
+  }
+  .spinner {
+    width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.3);
+    border-top: 4px solid #ffd700; border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
   @media (max-width: 380px) {
     h1 { font-size: 1.6rem; }
     .option { font-size: 0.85rem; padding: 15px 8px; min-height: 80px; }
@@ -317,6 +252,11 @@
 </head>
 <body>
 
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="spinner"></div>
+  <span id="loadingText">Carregando...</span>
+</div>
+
 <div class="container">
 
   <!-- TELA INICIAL -->
@@ -325,12 +265,7 @@
     <p class="subtitle">Higienização das Mãos<br>Aprendizagem Significativa (Ausubel)</p>
     <input type="text" id="playerName" placeholder="Digite seu nome" maxlength="20">
     <button class="btn btn-primary" onclick="startGame()">▶ Iniciar Jogo</button>
-    <button class="btn btn-info" onclick="showScreen('screen-ranking'); renderRanking()">🏆 Ver Ranking</button>
-    <button class="btn btn-warning" onclick="exportRanking()">📥 Exportar Ranking (.txt)</button>
-    <div class="file-input-wrapper">
-      <button class="btn btn-secondary">📤 Importar Ranking (.txt)</button>
-      <input type="file" accept=".txt" onchange="importRanking(event)">
-    </div>
+    <button class="btn btn-info" onclick="showScreen('screen-ranking'); fetchAndRenderRanking()">🏆 Ver Ranking</button>
     <div class="info-box">
       💡 5 perguntas • 30s cada • Pontuação por tempo<br>
       Quanto mais rápido, mais pontos!
@@ -368,24 +303,30 @@
       <div class="points-gained" id="finalScore">0</div>
       <div class="result-label" id="finalPlayerName">Jogador</div>
     </div>
-    <button class="btn btn-primary" onclick="showScreen('screen-ranking'); renderRanking()">🏆 Ver Ranking</button>
+    <button class="btn btn-primary" onclick="showScreen('screen-ranking'); fetchAndRenderRanking(currentPlayer)">🏆 Ver Ranking</button>
     <button class="btn btn-warning" onclick="restartGame()">🔄 Jogar Novamente</button>
-    <button class="btn btn-info" onclick="exportRanking()">📥 Exportar Ranking (.txt)</button>
   </div>
 
   <!-- TELA RANKING -->
   <div id="screen-ranking" class="screen">
     <h1>🏆 Ranking</h1>
     <div class="ranking-list" id="rankingList"></div>
-    <button class="btn btn-primary" onclick="showScreen('screen-home')">🏠 Voltar</button>
-    <button class="btn btn-warning" onclick="exportRanking()">📥 Exportar (.txt)</button>
-    <button class="btn btn-secondary" onclick="clearRanking()">🗑️ Limpar Ranking</button>
+    <button class="btn btn-info" onclick="fetchAndRenderRanking(currentPlayer)">🔄 Atualizar Ranking</button>
+    <button class="btn btn-secondary" onclick="showScreen('screen-home')">🏠 Voltar</button>
   </div>
 
 </div>
 
 <script>
-// ========== BANCO DE PERGUNTAS ==========
+// ==========================================================
+// ⚙️ CONFIGURAÇÃO DO JSONBIN (SUBSTITUA AQUI!)
+// ==========================================================
+const JSONBIN_CONFIG = {
+    binId: '6ab428a0ffd5d1605327cc1b',       // Ex: '65a1b2c3d4e5f6g7h8i9j0k1'
+    apiKey: '$2a$10$mJgbKIBHKZdhtM481Qmzx.tJjh/CnsmKYj079yzaphizJIBNBBYlO'    // Ex: '$2a$10$xxxxxxxxxxxxxxxxxxxxxx'
+};
+// ==========================================================
+
 const questions = [
   {
     q: "Em qual teoria de aprendizagem está ancorada a mini estratégia de ensino sobre higienização das mãos?",
@@ -408,13 +349,12 @@ const questions = [
     correct: 1
   },
   {
-    q: "Qual profissional do século XIX demonstrou que a higiene das mãos reduziu a mortalidade materna?",
+    q: "Qual profissional do século XIX foi usado como gancho histórico, mostrando que a higiene das mãos reduziu a mortalidade materna?",
     options: ["Louis Pasteur", "Florence Nightingale", "Ignaz Semmelweis", "Robert Koch"],
     correct: 2
   }
 ];
 
-// ========== ESTADO DO JOGO ==========
 let currentPlayer = "";
 let currentQuestion = 0;
 let currentScore = 0;
@@ -423,286 +363,248 @@ let timerInterval = null;
 let questionStartTime = 0;
 let answered = false;
 
-// ========== RANKING (localStorage) ==========
-function getRanking() {
-  const data = localStorage.getItem("quizMaosRanking");
-  return data ? JSON.parse(data) : [];
+// ========== FUNÇÕES JSONBIN ==========
+function showLoading(show, text = "Carregando...") {
+    const overlay = document.getElementById("loadingOverlay");
+    document.getElementById("loadingText").textContent = text;
+    overlay.style.display = show ? "flex" : "none";
 }
 
-function saveRanking(ranking) {
-  localStorage.setItem("quizMaosRanking", JSON.stringify(ranking));
+async function fetchRanking() {
+    if (JSONBIN_CONFIG.binId === 'SEU_BIN_ID_AQUI') {
+        alert("⚠️ Configure o JSONBIN no código! Veja as instruções.");
+        return [];
+    }
+    try {
+        const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}/latest`, {
+            headers: { 'X-Master-Key': JSONBIN_CONFIG.apiKey }
+        });
+        if (!response.ok) throw new Error("Falha na rede");
+        const data = await response.json();
+        return data.record.ranking || [];
+    } catch (error) {
+        console.error("Erro ao buscar ranking:", error);
+        alert("Erro ao carregar ranking. Verifique sua conexão ou configuração.");
+        return [];
+    }
 }
 
-function addPlayerToRanking(name, score) {
-  const ranking = getRanking();
-  ranking.push({
-    name: name,
-    score: score,
-    date: new Date().toLocaleString("pt-BR")
-  });
-  ranking.sort((a, b) => b.score - a.score);
-  saveRanking(ranking);
+async function saveRanking(newRanking) {
+    try {
+        const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_CONFIG.binId}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Master-Key': JSONBIN_CONFIG.apiKey
+            },
+            body: JSON.stringify({ ranking: newRanking })
+        });
+        return response.ok;
+    } catch (error) {
+        console.error("Erro ao salvar ranking:", error);
+        return false;
+    }
 }
 
-function renderRanking(highlightName = null) {
-  const ranking = getRanking();
-  const list = document.getElementById("rankingList");
-  
-  if (ranking.length === 0) {
-    list.innerHTML = '<div class="empty-ranking">Nenhum jogador ainda.<br>Seja o primeiro! 🎯</div>';
-    return;
-  }
-  
-  list.innerHTML = ranking.slice(0, 20).map((p, i) => {
-    const posClass = i < 3 ? `rank-${i+1}` : "";
-    const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : (i+1) + "º";
-    const highlight = (highlightName && p.name === highlightName) ? "highlight-me" : "";
-    return `
-      <div class="ranking-item ${highlight}">
-        <div class="rank-position ${posClass}">${medal}</div>
-        <div class="rank-name">${escapeHtml(p.name)}</div>
-        <div class="rank-score">${p.score} pts</div>
-      </div>
-    `;
-  }).join("");
+async function fetchAndRenderRanking(highlightName = null) {
+    showLoading(true, "Buscando ranking...");
+    const ranking = await fetchRanking();
+    showLoading(false);
+    renderRankingUI(ranking, highlightName);
+}
+
+function renderRankingUI(ranking, highlightName = null) {
+    const list = document.getElementById("rankingList");
+    if (!ranking || ranking.length === 0) {
+        list.innerHTML = '<div class="empty-ranking">Nenhum jogador ainda.<br>Seja o primeiro! 🎯</div>';
+        return;
+    }
+    
+    // Ordenar por pontuação (decrescente)
+    ranking.sort((a, b) => b.score - a.score);
+    
+    list.innerHTML = ranking.slice(0, 20).map((p, i) => {
+        const posClass = i < 3 ? `rank-${i+1}` : "";
+        const medal = i === 0 ? "🥇" : i === 1 ? "🥈" : i === 2 ? "🥉" : (i+1) + "º";
+        const highlight = (highlightName && p.name.toLowerCase() === highlightName.toLowerCase()) ? "highlight-me" : "";
+        return `
+          <div class="ranking-item ${highlight}">
+            <div class="rank-position ${posClass}">${medal}</div>
+            <div class="rank-name">${escapeHtml(p.name)}</div>
+            <div class="rank-score">${p.score} pts</div>
+          </div>
+        `;
+    }).join("");
 }
 
 function escapeHtml(str) {
-  const div = document.createElement("div");
-  div.textContent = str;
-  return div.innerHTML;
-}
-
-// ========== EXPORTAR / IMPORTAR TXT ==========
-function exportRanking() {
-  const ranking = getRanking();
-  if (ranking.length === 0) {
-    alert("Ranking vazio! Jogue primeiro.");
-    return;
-  }
-  
-  let txt = "=====================================\n";
-  txt += "   RANKING - QUIZ HIGIENIZAÇÃO DAS MÃOS\n";
-  txt += "=====================================\n";
-  txt += "Gerado em: " + new Date().toLocaleString("pt-BR") + "\n";
-  txt += "Total de jogadores: " + ranking.length + "\n\n";
-  txt += "POS  | PONTOS | NOME\n";
-  txt += "-----|--------|------------------------\n";
-  
-  ranking.forEach((p, i) => {
-    const pos = String(i+1).padStart(3, " ");
-    const pts = String(p.score).padStart(6, " ");
-    txt += `${pos}  | ${pts} | ${p.name} (${p.date})\n`;
-  });
-  
-  txt += "\n=====================================\n";
-  
-  const blob = new Blob([txt], { type: "text/plain;charset=utf-8" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "ranking_quiz_maos.txt";
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-}
-
-function importRanking(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    const content = e.target.result;
-    // Tenta extrair entradas do formato exportado
-    const regex = /\s*(\d+)\s*\|\s*(\d+)\s*\|\s*([^\(]+)\s*\(([^)]+)\)/g;
-    let match;
-    const imported = [];
-    
-    while ((match = regex.exec(content)) !== null) {
-      imported.push({
-        name: match[3].trim(),
-        score: parseInt(match[2]),
-        date: match[4].trim()
-      });
-    }
-    
-    if (imported.length === 0) {
-      alert("Não foi possível ler o arquivo. Verifique o formato.");
-      return;
-    }
-    
-    // Mescla com ranking atual (evita duplicatas exatas)
-    const current = getRanking();
-    const merged = [...current];
-    imported.forEach(newP => {
-      const exists = merged.some(p => 
-        p.name === newP.name && 
-        p.score === newP.score && 
-        p.date === newP.date
-      );
-      if (!exists) merged.push(newP);
-    });
-    
-    merged.sort((a, b) => b.score - a.score);
-    saveRanking(merged);
-    alert(`${imported.length} jogador(es) importado(s) com sucesso!`);
-    renderRanking();
-  };
-  reader.readAsText(file);
-  event.target.value = "";
-}
-
-function clearRanking() {
-  if (confirm("Tem certeza que deseja apagar TODO o ranking?")) {
-    localStorage.removeItem("quizMaosRanking");
-    renderRanking();
-  }
+    const div = document.createElement("div");
+    div.textContent = str;
+    return div.innerHTML;
 }
 
 // ========== NAVEGAÇÃO ==========
 function showScreen(id) {
-  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
-  document.getElementById(id).classList.add("active");
+    document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
 }
 
 // ========== JOGO ==========
 function startGame() {
-  const name = document.getElementById("playerName").value.trim();
-  if (!name) {
-    alert("Digite seu nome para começar!");
-    return;
-  }
-  currentPlayer = name;
-  currentQuestion = 0;
-  currentScore = 0;
-  document.getElementById("currentScore").textContent = "0";
-  showScreen("screen-quiz");
-  loadQuestion();
+    const name = document.getElementById("playerName").value.trim();
+    if (!name) {
+        alert("Digite seu nome para começar!");
+        return;
+    }
+    currentPlayer = name;
+    currentQuestion = 0;
+    currentScore = 0;
+    document.getElementById("currentScore").textContent = "0";
+    showScreen("screen-quiz");
+    loadQuestion();
 }
 
 function loadQuestion() {
-  answered = false;
-  const q = questions[currentQuestion];
-  document.getElementById("questionCounter").textContent = `${currentQuestion + 1}/${questions.length}`;
-  document.getElementById("questionBox").textContent = q.q;
-  
-  const colors = ["red", "blue", "yellow", "green"];
-  const shapes = ["▲", "◆", "●", "■"];
-  const optionsBox = document.getElementById("optionsBox");
-  optionsBox.innerHTML = q.options.map((opt, i) => `
-    <button class="option ${colors[i]}" onclick="selectAnswer(${i})">
-      <span style="font-size:1.3rem;margin-right:5px;">${shapes[i]}</span>
-      ${escapeHtml(opt)}
-    </button>
-  `).join("");
-  
-  timeLeft = 30;
-  questionStartTime = Date.now();
-  document.getElementById("timer").textContent = timeLeft;
-  document.getElementById("timer").classList.remove("danger");
-  document.getElementById("progressFill").style.width = "100%";
-  
-  clearInterval(timerInterval);
-  timerInterval = setInterval(tickTimer, 1000);
+    answered = false;
+    const q = questions[currentQuestion];
+    document.getElementById("questionCounter").textContent = `${currentQuestion + 1}/${questions.length}`;
+    document.getElementById("questionBox").textContent = q.q;
+    
+    const colors = ["red", "blue", "yellow", "green"];
+    const shapes = ["▲", "◆", "●", "■"];
+    const optionsBox = document.getElementById("optionsBox");
+    optionsBox.innerHTML = q.options.map((opt, i) => `
+        <button class="option ${colors[i]}" onclick="selectAnswer(${i})">
+          <span style="font-size:1.3rem;margin-right:5px;">${shapes[i]}</span>
+          ${escapeHtml(opt)}
+        </button>
+    `).join("");
+    
+    timeLeft = 30;
+    questionStartTime = Date.now();
+    document.getElementById("timer").textContent = timeLeft;
+    document.getElementById("timer").classList.remove("danger");
+    document.getElementById("progressFill").style.width = "100%";
+    
+    clearInterval(timerInterval);
+    timerInterval = setInterval(tickTimer, 1000);
 }
 
 function tickTimer() {
-  timeLeft--;
-  const elapsed = (Date.now() - questionStartTime) / 1000;
-  const percent = Math.max(0, ((30 - elapsed) / 30) * 100);
-  document.getElementById("progressFill").style.width = percent + "%";
-  document.getElementById("timer").textContent = timeLeft;
-  
-  if (timeLeft <= 10) {
-    document.getElementById("timer").classList.add("danger");
-  }
-  
-  if (timeLeft <= 0) {
-    clearInterval(timerInterval);
-    if (!answered) {
-      timeOut();
+    timeLeft--;
+    const elapsed = (Date.now() - questionStartTime) / 1000;
+    const percent = Math.max(0, ((30 - elapsed) / 30) * 100);
+    document.getElementById("progressFill").style.width = percent + "%";
+    document.getElementById("timer").textContent = timeLeft;
+    
+    if (timeLeft <= 10) {
+        document.getElementById("timer").classList.add("danger");
     }
-  }
+    
+    if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        if (!answered) timeOut();
+    }
 }
 
 function selectAnswer(index) {
-  if (answered) return;
-  answered = true;
-  clearInterval(timerInterval);
-  
-  const q = questions[currentQuestion];
-  const buttons = document.querySelectorAll(".option");
-  const elapsed = (Date.now() - questionStartTime) / 1000;
-  
-  buttons.forEach(b => b.disabled = true);
-  
-  if (index === q.correct) {
-    buttons[index].classList.add("correct");
-    const points = Math.max(100, Math.round(1000 - (elapsed * 30)));
-    currentScore += points;
-    document.getElementById("currentScore").textContent = currentScore;
+    if (answered) return;
+    answered = true;
+    clearInterval(timerInterval);
     
-    setTimeout(() => {
-      document.getElementById("resultEmoji").textContent = "✅";
-      document.getElementById("resultLabel").textContent = "Resposta Correta!";
-      document.getElementById("pointsGained").textContent = "+" + points;
-      showScreen("screen-result");
-    }, 800);
-  } else {
-    buttons[index].classList.add("wrong");
-    buttons[q.correct].classList.add("correct");
+    const q = questions[currentQuestion];
+    const buttons = document.querySelectorAll(".option");
+    const elapsed = (Date.now() - questionStartTime) / 1000;
     
-    setTimeout(() => {
-      document.getElementById("resultEmoji").textContent = "❌";
-      document.getElementById("resultLabel").textContent = "Resposta Errada!";
-      document.getElementById("pointsGained").textContent = "+0";
-      showScreen("screen-result");
-    }, 1200);
-  }
+    buttons.forEach(b => b.disabled = true);
+    
+    if (index === q.correct) {
+        buttons[index].classList.add("correct");
+        const points = Math.max(100, Math.round(1000 - (elapsed * 30)));
+        currentScore += points;
+        document.getElementById("currentScore").textContent = currentScore;
+        
+        setTimeout(() => {
+            document.getElementById("resultEmoji").textContent = "✅";
+            document.getElementById("resultLabel").textContent = "Resposta Correta!";
+            document.getElementById("pointsGained").textContent = "+" + points;
+            showScreen("screen-result");
+        }, 800);
+    } else {
+        buttons[index].classList.add("wrong");
+        buttons[q.correct].classList.add("correct");
+        
+        setTimeout(() => {
+            document.getElementById("resultEmoji").textContent = "❌";
+            document.getElementById("resultLabel").textContent = "Resposta Errada!";
+            document.getElementById("pointsGained").textContent = "+0";
+            showScreen("screen-result");
+        }, 1200);
+    }
 }
 
 function timeOut() {
-  answered = true;
-  const q = questions[currentQuestion];
-  const buttons = document.querySelectorAll(".option");
-  buttons.forEach(b => b.disabled = true);
-  buttons[q.correct].classList.add("correct");
-  
-  setTimeout(() => {
-    document.getElementById("resultEmoji").textContent = "⏰";
-    document.getElementById("resultLabel").textContent = "Tempo Esgotado!";
-    document.getElementById("pointsGained").textContent = "+0";
-    showScreen("screen-result");
-  }, 1000);
+    answered = true;
+    const q = questions[currentQuestion];
+    const buttons = document.querySelectorAll(".option");
+    buttons.forEach(b => b.disabled = true);
+    buttons[q.correct].classList.add("correct");
+    
+    setTimeout(() => {
+        document.getElementById("resultEmoji").textContent = "⏰";
+        document.getElementById("resultLabel").textContent = "Tempo Esgotado!";
+        document.getElementById("pointsGained").textContent = "+0";
+        showScreen("screen-result");
+    }, 1000);
 }
 
 function nextQuestion() {
-  currentQuestion++;
-  if (currentQuestion >= questions.length) {
-    finishGame();
-  } else {
-    showScreen("screen-quiz");
-    loadQuestion();
-  }
+    currentQuestion++;
+    if (currentQuestion >= questions.length) {
+        finishGame();
+    } else {
+        showScreen("screen-quiz");
+        loadQuestion();
+    }
 }
 
-function finishGame() {
-  addPlayerToRanking(currentPlayer, currentScore);
-  document.getElementById("finalScore").textContent = currentScore;
-  document.getElementById("finalPlayerName").textContent = currentPlayer;
-  showScreen("screen-final");
+async function finishGame() {
+    showLoading(true, "Salvando sua pontuação...");
+    
+    // 1. Busca ranking atual
+    let ranking = await fetchRanking();
+    
+    // 2. Adiciona novo jogador
+    ranking.push({
+        name: currentPlayer,
+        score: currentScore,
+        date: new Date().toLocaleString("pt-BR")
+    });
+    
+    // 3. Ordena e mantém top 50 (para não estourar o limite gratuito do JSONBin)
+    ranking.sort((a, b) => b.score - a.score);
+    ranking = ranking.slice(0, 50);
+    
+    // 4. Salva no JSONBin
+    const success = await saveRanking(ranking);
+    showLoading(false);
+    
+    if (!success) {
+        alert("Erro ao salvar pontuação. Tente novamente.");
+    }
+    
+    document.getElementById("finalScore").textContent = currentScore;
+    document.getElementById("finalPlayerName").textContent = currentPlayer;
+    showScreen("screen-final");
 }
 
 function restartGame() {
-  document.getElementById("playerName").value = "";
-  showScreen("screen-home");
+    document.getElementById("playerName").value = "";
+    showScreen("screen-home");
 }
 
-// Enter no input inicia o jogo
 document.getElementById("playerName").addEventListener("keypress", function(e) {
-  if (e.key === "Enter") startGame();
+    if (e.key === "Enter") startGame();
 });
 </script>
 
